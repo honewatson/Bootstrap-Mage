@@ -1,0 +1,81 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+
+?>
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+<div class="<?php Bootstrap::compile('block-block-cart') ?>">
+    <?php $_cartQty = $this->getSummaryCount() ?>
+    <div class="<?php Bootstrap::compile('block-title') ?>">
+        <strong><span><?php echo $this->__('My Cart') ?></span></strong>
+    </div>
+    <div class="<?php Bootstrap::compile('block-content') ?>">
+    <?php if ($_cartQty>0): ?>
+        <div class="<?php Bootstrap::compile('summary') ?>">
+            <?php if ($_cartQty==1): ?>
+                <p class="<?php Bootstrap::compile('amount-in-cart') ?>"><?php echo $this->__('There is <a href="%s">1 item</a> in your cart.', $this->getUrl('checkout/cart')) ?></p>
+            <?php else: ?>
+                <p class="<?php Bootstrap::compile('amount-in-cart') ?>"><?php echo $this->__('There are <a href="%s">%s items</a> in your cart.', $this->getUrl('checkout/cart'), $_cartQty) ?></p>
+            <?php endif ?>
+            <p class="<?php Bootstrap::compile('subtotal') ?>">
+                <?php if ($this->canApplyMsrp()): ?>
+                    <span class="<?php Bootstrap::compile('map-cart-sidebar-total') ?>"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></span>
+                <?php else: ?>
+                    <span class="<?php Bootstrap::compile('sidebar-subtotal') ?>"><?php echo $this->__('Cart Subtotal:') ?></span> <span class="<?php Bootstrap::compile('sidebar-subtotal-number') ?>"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?></div>
+                    <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+                        <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+                    <?php endif; ?>
+                <?php endif; ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+    <div class="<?php Bootstrap::compile('actions') ?>">
+        <?php echo $this->getChildHtml('extra_actions') ?>
+        <button type="button" title="<?php echo $this->__('Checkout') ?>" class="<?php Bootstrap::compile('button-checkout') ?>" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><i class="icon-shopping-cart icon-white"></i><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+    </div>
+    <?php endif ?>
+    <?php $_items = $this->getRecentItems() ?>
+    <?php if(count($_items)): ?>
+        <p class="<?php Bootstrap::compile('block-subtitle') ?>"><?php echo $this->__('Recently added') ?></p>
+        <ol id="cart-sidebar" class="<?php Bootstrap::compile('mini-products-list') ?>">
+        <?php foreach($_items as $_item): ?>
+            <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+    <?php else: ?>
+        <p class="<?php Bootstrap::compile('empty') ?>"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+    <?php endif ?>
+    </div>
+</div>
+
+<?php endif;?>

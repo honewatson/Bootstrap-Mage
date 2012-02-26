@@ -1,0 +1,64 @@
+/* 
+    Document   : extra-styles
+    Created on : Feb 17, 2012, 7:22:00 PM
+    Author     : honhon
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+ul.inline { list-style:none; }
+ul.inline li {display:inline; list-style:none;}
+
+.size14 { font-size:14px; line-height:18px;}
+.size11 { font-size:11px; line-height:15px;}
+.normal {font-weight:normal;}
+/* .product-image {border:solid 1px #ccc; display:block; padding:5px; text-align:center;} */
+.inner-list {background:#fcfcfc; padding:10px; height:280px;}
+.product-image {display:block; padding:5px; background:#fff; text-align:center;}
+
+.text-align-left {text-align:left;}
+.toolbar label, .toolbar selector {float:left; margin-right:5px;}
+.p5 {padding:5px;}
+.p3 {padding:3px;}
+.mr5 {margin-right:5px;}
+.mb5 {margin:0 0 5px 0;}
+.footer-container {
+     border-top: 1px solid #E5E5E5;
+    margin-top: 45px;
+    padding: 5px 0 36px;   
+}
+.ptb5 {padding:5px 0;}
+.pb5 {padding:0 0 5px 0;}
+.pb20 {padding:0 0 20px 0;}
+.pl5 {padding:0 0 0 5px;}
+.pt5 {padding:5px 0 0 0;}
+.m0 {margin:0;}
+.mt5 {margin:5px 0 0 0;}
+.mt20 {margin:20px 0 0 0;}
+.mtb5 {margin:5px 0;}
+.footer h3 { font-size:13px; color:#5E5E5E; line-height:18px;}
+.footer li a {color:#5E5E5E;}
+.strong {font-weight:bold;}
+.light-orange {background:#FFF6E0}
+.light-grey {background:#f2f2f2;}
+.light-brown {background:#F9E8CC;}
+
+.catalog-product-view .price-box-view .price {font-size:32px; line-height:36px; color:#51A351}
+
+.clear {clear:both;}
+.nav-tabs {text-transform:capitalize}
+
+.cart-dropdown a {display:inline; clear:none; white-space:normal; }
+.cart-dropdown a.product-image {display:block; width:50px; padding:0; margin:0 5px 0 0 ;  float:left;}
+.cart-dropdown .product-name a, .cart-dropdown .alert-success a {display:inline; padding:0;}
+.cart-dropdown .product-details .btn {color:#fff;}
+.cart-dropdown .product-details {float:left; width:180px;}
+.cart-dropdown li {width:240px; clear:both;}
+
+.mainnav-li-a {font-size:20px; font-weight:bold; }
+.navbar .nav > li > a.mainnav-li-a:hover, .dropdown.open .dropdown-toggle  {}

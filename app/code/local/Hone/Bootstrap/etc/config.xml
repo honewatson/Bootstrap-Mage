@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Hone
+ * @package    Hone_Bootstrap
+ * @author     Hone Watson
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Hone_Bootstrap>
+            <version>0.1.0</version>
+        </Hone_Bootstrap>
+    </modules>
+    <frontend>
+        <routers>
+            <bootstrap>
+                <use>standard</use>
+                <args>
+                    <module>Hone_Bootstrap</module>
+                    <frontName>bootstrap</frontName>
+                </args>
+            </bootstrap>
+        </routers>
+        <layout>
+            <updates>
+                <bootstrap>
+                    <file>bootstrap.xml</file>
+                </bootstrap>
+            </updates>
+        </layout>
+         <events>
+			<controller_action_layout_load_before>
+				<observers>
+					<hone_bootstrap_initialize>
+						<type>model</type>
+						<class>Hone_Bootstrap_Model_Initialize</class>
+						<method>start</method>
+					</hone_bootstrap_initialize>
+				</observers>
+			</controller_action_layout_load_before>
+        </events>
+    </frontend>
+    <admin>
+        <routers>
+			<bootstrap>
+				<use>admin</use>
+				<args>
+					<module>Hone_Bootstrap</module>
+					<frontName>bootstrap</frontName>
+				</args>
+			</bootstrap>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<bootstrap module="bootstrap">
+				<title>Bootstrap</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="bootstrap">
+						<title>Manage Items</title>
+						<sort_order>0</sort_order>
+						<action>bootstrap/adminhtml_bootstrap</action>
+					</items>
+				</children>
+			</bootstrap>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Hone_Bootstrap>
+							<title>Bootstrap Module</title>
+							<sort_order>10</sort_order>
+						</Hone_Bootstrap>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<bootstrap>
+					<file>bootstrap.xml</file>
+				</bootstrap>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <bootstrap>
+                <class>Hone_Bootstrap_Model</class>
+                <resourceModel>bootstrap_mysql4</resourceModel>
+            </bootstrap>
+            <bootstrap_mysql4>
+                <class>Hone_Bootstrap_Model_Mysql4</class>
+                <entities>
+                    <bootstrap>
+                        <table>bootstrap</table>
+                    </bootstrap>
+                </entities>
+            </bootstrap_mysql4>
+        </models>
+        <resources>
+            <bootstrap_setup>
+                <setup>
+                    <module>Hone_Bootstrap</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </bootstrap_setup>
+            <bootstrap_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </bootstrap_write>
+            <bootstrap_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </bootstrap_read>
+        </resources>
+        <blocks>
+            <bootstrap>
+                <class>Hone_Bootstrap_Block</class>
+            </bootstrap>
+        </blocks>
+        <helpers>
+            <bootstrap>
+                <class>Hone_Bootstrap_Helper</class>
+            </bootstrap>
+        </helpers>
+    </global>
+</config>
